@@ -30,7 +30,7 @@ char* DimCadena2(char* prmtempCadena,int prmLongCadena);
  * @return int 
  */
 int main(int argc, char *argv[]){
-    /*
+    
     if (argc != 3)
     {
         fprintf(stderr,"Debe especificar el directorio y el patron\n");
@@ -41,10 +41,10 @@ int main(int argc, char *argv[]){
         printf("%s Es un directorio\n",argv[1]);
     }else{
         printf("%s No es un directorio\n",argv[1]);
-    }*/
+    }
     printf("El patron de busqueda es:%s\n",argv[2]);
-    //printf("# devuelto por buscar: %d\n",buscar(argv[1],argv[2]));
-    printf("# devuelto por buscar: %d\n",buscar("/home/kjimenez/Documentos","prueba"));
+    printf("# devuelto por buscar: %d\n",buscar(argv[1],argv[2]));
+    //printf("# devuelto por buscar: %d\n",buscar("/home/kjimenez/Documentos","prueba"));
     exit(EXIT_SUCCESS);
 }
 /**
@@ -80,7 +80,6 @@ int es_directorio(char * ruta){
  * @return int Retorna el total de coincidencias
  */
 int buscar(char * directorio, char * patron){
-    printf("Entrando a la funcion buscar\n");
     int total = 0;
     char *ruta;
 
@@ -96,23 +95,22 @@ int buscar(char * directorio, char * patron){
         printf("\n");
         return total;
     }
-    printf("entrando al while\n");
     //Leer el directorio con el servicio readdir
     while ((ent = readdir(d)) != NULL)
     {
-        ruta = (char*)malloc(10*sizeof(char));
+        ruta = (char*)malloc(sizeof(char)*(strlen(directorio)+strlen(ent->d_name)));
         //ruta = DimCadena(strlen(directorio)+strlen(ent->d_name)+2);
         //Construir la ruta completa directorio/ent->d_name
-        //strcpy(ruta,strcpy(strcat(directorio,"/"),ent->d_name));
-        printf("ruta:       %s\n",ruta);
-        printf("directorio: %s\n",directorio);
-        printf("dname:      %s\n",ent->d_name);
-        strcpy(ruta,ent->d_name);
+
+        strcpy(ruta,directorio);
+        strcat(ruta,"/");
+        strcat(ruta,ent->d_name);
         //Verificar si la entrada (archivo o directorio) contiene 
         //el patrón de búsqueda
         if (strstr(ent->d_name,patron) != NULL)
         {
             //imprimir la ruta completa
+            printf("tamaño asignado: %d\n",strlen(ruta));
             printf(ruta);
             printf("\n**********Exito************\n");
             total = total + 1;
