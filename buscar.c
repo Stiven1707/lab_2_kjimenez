@@ -114,7 +114,7 @@ int buscar(char * directorio, char * patron){
         {
             //imprimir la ruta completa
             printf(ruta);
-            printf("**********************\n");
+            printf("\n**********Exito************\n");
             total = total + 1;
         }
 
