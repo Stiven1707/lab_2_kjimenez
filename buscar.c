@@ -16,10 +16,6 @@ int es_directorio(char * ruta);
 int buscar(char * directorio, char * patron);
 
 
-char* DimCadena(int prmLongCadena);
-char* DimCadena2(char* prmtempCadena,int prmLongCadena);
-
-
 /**
  * @brief 
  * 
@@ -98,8 +94,7 @@ int buscar(char * directorio, char * patron){
     //Leer el directorio con el servicio readdir
     while ((ent = readdir(d)) != NULL)
     {
-        ruta = (char*)malloc(sizeof(char)*(strlen(directorio)+strlen(ent->d_name)));
-        //ruta = DimCadena(strlen(directorio)+strlen(ent->d_name)+2);
+        ruta = (char*)malloc(strlen(directorio));
         //Construir la ruta completa directorio/ent->d_name
 
         strcpy(ruta,directorio);
@@ -110,7 +105,6 @@ int buscar(char * directorio, char * patron){
         if (strstr(ent->d_name,patron) != NULL)
         {
             //imprimir la ruta completa
-            printf("tamaño asignado: %d\n",strlen(ruta));
             printf(ruta);
             printf("\n**********Exito************\n");
             total = total + 1;
@@ -128,19 +122,4 @@ int buscar(char * directorio, char * patron){
     closedir(d);
     free(ruta);
     return total;
-}
-char* DimCadena(int prmLongCadena){
-    char* cadena = (char*)malloc(prmLongCadena);
-    return cadena;
-}
-/**
- * @brief 
- * 
- * @param prmLongCadena 
- * @return char* 
- */
-char* DimCadena2(char* prmtempCadena,int prmLongCadena){
-    char* cadena = (char*)malloc(prmLongCadena);
-    strcpy(cadena,prmtempCadena);
-    return cadena;
 }
