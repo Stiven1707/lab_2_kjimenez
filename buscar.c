@@ -6,10 +6,6 @@
 #include <dirent.h>
 #include <string.h>
 
-#ifndef MAX
-#define MAX 100
-#endif
-
 int es_directorio(char * ruta);
 //Busca recursivamente archivos/directorios cuyo nombre contenga patron
 //Retorna el total de coincidencias
