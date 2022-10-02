@@ -40,6 +40,7 @@ int main(int argc, char *argv[]){
     }
     printf("El patron de busqueda es:%s\n",argv[2]);
     printf("# devuelto por buscar: %d\n",buscar(argv[1],argv[2]));
+    
     //printf("# devuelto por buscar: %d\n",buscar("/home/kjimenez/Documentos","prueba"));
     exit(EXIT_SUCCESS);
 }
@@ -94,7 +95,7 @@ int buscar(char * directorio, char * patron){
     //Leer el directorio con el servicio readdir
     while ((ent = readdir(d)) != NULL)
     {
-        ruta = (char*)malloc(strlen(directorio));
+        ruta = (char*)malloc(strlen(directorio)+strlen(ent->d_name)+2);
         //Construir la ruta completa directorio/ent->d_name
 
         strcpy(ruta,directorio);
@@ -109,7 +110,7 @@ int buscar(char * directorio, char * patron){
             printf("\n**********Exito************\n");
             total = total + 1;
         }
-
+        //TODO: printf("%s\n",ruta);
         if (es_directorio(ruta) && strcmp(ent->d_name,".") !=0 && strcmp(ent->d_name,"..") !=0)
         {
             //Buscar recursivamente dentro del subdirectorio
