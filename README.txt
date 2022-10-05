@@ -1,3 +1,3 @@
-# lab_2_kjimenez2
+# lab_2_kjimenez
 #Integrante
 Kevin Stiven Jimenez Perafan kjimenez@unicauca.edu.co
